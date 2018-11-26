@@ -37,7 +37,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends apt-utils
-RUN apt-get install -y --no-install-recommends software-properties-common unzip make build-essential wget ghostscript libgs-dev imagemagick sox sudo
+RUN apt-get install -y --no-install-recommends software-properties-common unzip  make build-essential wget ghostscript libgs-dev imagemagick sox sudo
 
 RUN add-apt-repository -y ppa:webupd8team/java && apt-get update
 RUN echo 'oracle-java8-installer shared/accepted-oracle-license-v1-1 select true' | debconf-set-selections
@@ -66,7 +66,7 @@ RUN ${work}/om_install.sh
 
 RUN sed -i 's|<policy domain="coder" rights="none" pattern="PS" />|<!--policy domain="coder" rights="none" pattern="PS" />|g; s|<policy domain="coder" rights="none" pattern="XPS" />|<policy domain="coder" rights="none" pattern="XPS" /-->|g' /etc/ImageMagick-6/policy.xml
 
-EXPOSE 5080 1935
+EXPOSE 5080 1935 3306 4200
 #CMD bash ${work}/om.sh
 
 ENTRYPOINT [ "bash", "-c", "${work}/om.sh" ]
